@@ -52,7 +52,7 @@ public class Display {
                     }
                 }
 
-                //grid[i][j] = colorChar.charAt(0) + word.get(i) + RESET_CHAR;
+                grid[i][j] = colorChar.charAt(0) + word.get(i) + RESET_CHAR;
             }
         }
     }
