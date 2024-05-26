@@ -1,15 +1,16 @@
 import java.util.Arrays;
 
 public class Guess {
-    private final Character[][] letters = new Character[6][7];
+    private final Character[][] letters = new Character[6][6];
     private int guessCount;
 
-    public void addGuess(String word) {
+    public boolean addGuess(String word) {
         if (guessCount < 6) {
             letters[guessCount] = convertWordToCharacters(word);
             guessCount++;
+            return true;
         } else {
-            System.out.println("No more guesses can be added.");
+            return false;
         }
     }
 

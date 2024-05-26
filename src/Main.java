@@ -18,9 +18,8 @@ public class Main {
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_BOLD = "\u001B[1m";
 
-    private static final String FILE_PATH = "Last Played Date.txt";
+    private static final String FILE_PATH = "LastPlayedDate";
     public static Scanner scanner = new Scanner(System.in);
-
 
 
     public static void main(String[] args) {
@@ -29,7 +28,7 @@ public class Main {
 
     }
 
-    public static void welcomeBanner(){
+    public static void welcomeBanner() {
         System.out.print("   __   _        _   _            __      __          _ _     \n" +
                 "  / /  | |   ___| |_| |_ ___ _ _  \\ \\    / /__ _ _ __| | |___ \n" +
                 " / _ \\ | |__/ -_)  _|  _/ -_) '_|  \\ \\/\\/ / _ \\ '_/ _` | / -_)\n" +
@@ -37,7 +36,7 @@ public class Main {
 
     }
 
-    public static void gameRules(){
+    public static void gameRules() {
         System.out.println(ANSI_BOLD + "Welcome to 6-Letter Wordle!" + ANSI_RESET);
         System.out.println("Rules:");
         System.out.println("- Guess the letters of the hidden word.");
@@ -45,14 +44,14 @@ public class Main {
         System.out.println("  - Green: Correct letter in the correct position");
         System.out.println("  - Yellow: Correct letter in the wrong position");
         waitSecond();
-        System.out.println("You can choose to play the Once a Day Mode or the Free Play Mode.\nType " + ANSI_BLUE + "[1]" + ANSI_RESET + " for once a day mode\nType " + ANSI_PURPLE + "[2]" + ANSI_RESET + " for free play." );
+        System.out.println("You can choose to play the Once a Day Mode or the Free Play Mode.\nType " + ANSI_BLUE + "[1]" + ANSI_RESET + " for once a day mode\nType " + ANSI_PURPLE + "[2]" + ANSI_RESET + " for free play.");
         decideGamemode(scanner.nextInt());
     }
 
-    public static void decideGamemode(int n){
-        if(n == 1){
+    public static void decideGamemode(int n) {
+        if (n == 1) {
             Date currentDate = new Date();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
             String formattedDate = dateFormat.format(currentDate);
 
             try (PrintWriter writer = new PrintWriter(new FileWriter(FILE_PATH))) {
