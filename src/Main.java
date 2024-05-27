@@ -24,7 +24,7 @@ public class Main {
 
     public static void main(String[] args) {
         welcomeBanner();
-        gameRules();
+        decideGamemode(gameRules());
 
     }
 
@@ -36,7 +36,7 @@ public class Main {
 
     }
 
-    public static void gameRules() {
+    public static int gameRules() {
         System.out.println(ANSI_BOLD + "Welcome to 6-Letter Wordle!" + ANSI_RESET);
         System.out.println("Rules:");
         System.out.println("- Guess the letters of the hidden word.");
@@ -45,7 +45,7 @@ public class Main {
         System.out.println("  - Yellow: Correct letter in the wrong position");
         waitSecond();
         System.out.println("You can choose to play the Once a Day Mode or the Free Play Mode.\nType " + ANSI_BLUE + "[1]" + ANSI_RESET + " for once a day mode\nType " + ANSI_PURPLE + "[2]" + ANSI_RESET + " for free play.");
-        decideGamemode(scanner.nextInt());
+        return scanner.nextInt();
     }
 
     public static void decideGamemode(int n) {
