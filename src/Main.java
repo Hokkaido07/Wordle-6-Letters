@@ -21,10 +21,15 @@ public class Main {
     private static final String FILE_PATH = "LastPlayedDate";
     public static Scanner scanner = new Scanner(System.in);
 
+    private static final Wordle wordle = new Wordle();
+    private static final Display display = new Display();
+
 
     public static void main(String[] args) {
         welcomeBanner();
         decideGamemode(gameRules());
+        display.show(wordle);
+        wordle.start(decideGamemode);
 
     }
 
