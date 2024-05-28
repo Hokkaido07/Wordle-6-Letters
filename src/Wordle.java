@@ -41,4 +41,12 @@ public class Wordle {
         return new GuessCheckResponse(hasIncorrect, states);
     }
 
+    public void playGuess(Guess guess) {
+        String userGuess = guess.getGuesses();
+        boolean isCorrect = GuessCheckResponse.checkGuess(userGuess);
+        guess.add(userGuess);
+        Display.updateGrid(isCorrect);
+    }
 }
+
+
