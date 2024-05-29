@@ -1,7 +1,10 @@
+import java.util.ArrayList;
+
 public class Wordle {
 
     private Guess guess = null;
     private WordOfTheDay wordOfTheDay;
+    private ArrayList<String> guesses;
 
     public void start(){
         guess = new Guess();
@@ -41,12 +44,17 @@ public class Wordle {
         return new GuessCheckResponse(hasIncorrect, states);
     }
 
-    public void playGuess(Guess guess) {
-        String userGuess = guess.getGuesses();
-        boolean isCorrect = GuessCheckResponse.checkGuess(userGuess);
-        guess.add(userGuess);
-        Display.updateGrid(isCorrect);
+    public void processGuess(String guess){
+        GuessCheckResponse isCorrect = isGuessCorrect(guess);
+        guesses.add(guess);
+        ArrayList<Character> word = Guess.getGuesses();
+        ArrayList<Boolean> correctPositions = getCorrectPositions(guess);
+        
+
     }
+
+
+
 }
 
 
