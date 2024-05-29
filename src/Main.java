@@ -29,7 +29,7 @@ public class Main {
         welcomeBanner();
         decideGamemode(gameRules());
         display.show(wordle);
-        wordle.start(decideGamemode);
+        wordle.start(decideGamemode());
 
     }
 
