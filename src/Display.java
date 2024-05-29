@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Display {
     private Square[][] grid;
     private static final Wordle wordle = new Wordle();
@@ -23,7 +21,7 @@ public class Display {
         return guess;
     }
 
-    public Square processGuess(String playersGuess, int index){
+    public void processGuess(String playersGuess, int index) {
         var response = wordle.processGuess(playersGuess);
         var rowForGuess = grid[index];
         for (int i = 0; i < response.squares().length; i++) {
@@ -32,7 +30,7 @@ public class Display {
         printGrid();
     }
 
-    public void printGrid(Square[] squares) {
+    public void printGrid() {
         clearScreen();
         System.out.println(
                 " __      __          _ _     \n" +
@@ -42,24 +40,25 @@ public class Display {
         );
 
         System.out.println("+------+------+------+------+------+------+");
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < grid.length; i++) {
             System.out.print("|");
-            for (int j = 0; j < 6; j++) {
-                Square square = squares[i * 6 + j];
+            for (int j = 0; j < grid[i].length; j++) {
+                Square square = grid[i][j];
                 String letter = String.valueOf(square.getLetter());
                 LetterState state = square.getState();
-                System.out.print(" " + getColorForState(state) + letter + "  |");
+                var color = getColorForState(state);
+                System.out.println(color + letter + "|");
             }
-            System.out.println("\n+------+------+------+------+------+------+");
         }
+        System.out.println("\n+------+------+------+------+------+------+");
     }
+
 
     public String getColorForState(LetterState state) {
         return switch (state) {
             case CORRECT -> "\u001B[32m"; // Green color
             case WRONG_PLACE -> "\u001B[33m"; // Yellow color
             case INCORRECT -> "\u001B[37m"; // Grey color
-            default -> "\u001B[0m";  // Reset color if the state is unknown
         };
     }
 
