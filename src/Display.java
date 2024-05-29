@@ -26,6 +26,15 @@ public class Display {
         return guess;
     }
 
+    public void processGuess(String playersGuess, int index){
+        var response = Wordle.processGuess(playersGuess);
+        var rowForGuess = grid[index];
+        for (int i = 0; i < response.playersGuess().length; i++) {
+            rowForGuess[i] = response.guess()[i];
+        }
+        updateGrid();
+    }
+
     public void printGrid() {
         clearScreen();
         System.out.println(
