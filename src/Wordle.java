@@ -18,21 +18,25 @@ public class Wordle {
         }
 
         boolean hasIncorrect = false;
-        LetterState[] states = new LetterState[guess.length()];
+        Square[] squares = new Square[guess.length()];
 
         for (int i = 0; i < answer.length(); i++) {
             char answerChar = answer.charAt(i);
             char guessChar = guess.charAt(i);
+            LetterState state;
             if (answerChar == guessChar) {
-                states[i] = LetterState.CORRECT;
+                state = LetterState.CORRECT;
             } else if (answer.contains(guessChar + "")) {
-                states[i] = LetterState.WRONG_PLACE;
+                state = LetterState.WRONG_PLACE;
             } else {
-                states[i] = LetterState.INCORRECT;
+                state = LetterState.INCORRECT;
                 hasIncorrect = true;
             }
+            Square square = new Square(guessChar, state);
+            squares[i] = square;
         }
-        return new GuessCheckResponse(hasIncorrect, states);
+
+        return new GuessCheckResponse(hasIncorrect, squares);
     }
 
 
