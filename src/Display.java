@@ -2,10 +2,7 @@ import java.util.ArrayList;
 
 public class Display {
     private Square[][] grid;
-    private final String GREEN_CHAR = '\u001B' + "[32m";     // Green color code
-    private final String YELLOW_CHAR = '\u001B' + "[33m";    // Yellow color code
-    private final String GREY_CHAR = '\u001B' + "[37m";      // Grey color code
-    private final String RESET_CHAR = '\u001B' + "[0m";      // Reset color code
+    private static final Wordle wordle = new Wordle();
 
     public Display() {
         grid = new Square[6][6];
@@ -26,16 +23,16 @@ public class Display {
         return guess;
     }
 
-    public void processGuess(String playersGuess, int index){
-        var response = Wordle.processGuess(playersGuess);
+    public Square processGuess(String playersGuess, int index){
+        var response = wordle.processGuess(playersGuess);
         var rowForGuess = grid[index];
-        for (int i = 0; i < response.playersGuess().length; i++) {
-            rowForGuess[i] = response.guess()[i];
+        for (int i = 0; i < response.squares().length; i++) {
+            rowForGuess[i] = response.squares()[i];
         }
-        updateGrid();
+        printGrid();
     }
 
-    public void printGrid() {
+    public void printGrid(Square[] squares) {
         clearScreen();
         System.out.println(
                 " __      __          _ _     \n" +
@@ -48,29 +45,24 @@ public class Display {
         for (int i = 0; i < 6; i++) {
             System.out.print("|");
             for (int j = 0; j < 6; j++) {
-                System.out.print("  " + grid[i][j] + "   |");
+                Square square = squares[i * 6 + j];
+                String letter = String.valueOf(square.getLetter());
+                LetterState state = square.getState();
+                System.out.print(" " + getColorForState(state) + letter + "  |");
             }
             System.out.println("\n+------+------+------+------+------+------+");
         }
     }
 
-    public void updateGrid(ArrayList<Character> word, ArrayList<Boolean> correctPositions) {
-        for (int i = 0; i < word.size(); i++) {
-            String colorChar = GREY_CHAR;
-
-            for (int j = 0; j < word.size(); j++) {
-                if (correctPositions.get(i)) {
-                    if (word.get(i) == grid[i][j]) {
-                        colorChar = GREEN_CHAR;
-                    } else {
-                        colorChar = YELLOW_CHAR;
-                    }
-                }
-
-                grid[i][j] = colorChar.charAt(0) + word.get(i) + RESET_CHAR;
-            }
-        }
+    public String getColorForState(LetterState state) {
+        return switch (state) {
+            case CORRECT -> "\u001B[32m"; // Green color
+            case WRONG_PLACE -> "\u001B[33m"; // Yellow color
+            case INCORRECT -> "\u001B[37m"; // Grey color
+            default -> "\u001B[0m";  // Reset color if the state is unknown
+        };
     }
+
 
     private void clearScreen() {
         System.out.print("\033[H\033[2J");
