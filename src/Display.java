@@ -47,7 +47,7 @@ public class Display {
                 String letter = String.valueOf(square.getLetter());
                 LetterState state = square.getState();
                 var color = getColorForState(state);
-                System.out.println(color + letter + "|");
+                System.out.println(" " + color + letter + "|");
             }
         }
         System.out.println("\n+------+------+------+------+------+------+");
