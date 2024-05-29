@@ -1,23 +1,29 @@
 import java.util.ArrayList;
 
 public class Display {
-    private char[][] grid;
+    private Square[][] grid;
     private final String GREEN_CHAR = '\u001B' + "[32m";     // Green color code
     private final String YELLOW_CHAR = '\u001B' + "[33m";    // Yellow color code
     private final String GREY_CHAR = '\u001B' + "[37m";      // Grey color code
     private final String RESET_CHAR = '\u001B' + "[0m";      // Reset color code
 
     public Display() {
-        grid = new char[6][6];
+        grid = new Square[6][6];
         initializeGrid();
     }
 
     private void initializeGrid() {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
-                grid[i][j] = ' ';
+                grid[i][j] = null;
             }
         }
+    }
+
+    public String getPlayerGuess(){
+        System.out.println("Please enter a word: ");
+        String guess = Main.scanner.nextLine();
+        return guess;
     }
 
     public void printGrid() {

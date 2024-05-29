@@ -14,11 +14,6 @@ public class Wordle {
     private record GuessCheckResponse(boolean correct, LetterState[] states){
 
     }
-    private enum LetterState{
-        CORRECT,
-        WRONG_PLACE,
-        INCORRECT
-    }
 
     public GuessCheckResponse isGuessCorrect(String guess){
         String answer = wordOfTheDay.getWord();
@@ -51,6 +46,8 @@ public class Wordle {
         ArrayList<Boolean> correctPositions = getCorrectPositions(guess);
 
     }
+
+
 
 
 

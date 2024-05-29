@@ -1,9 +1,9 @@
 public class Square {
 
     private char letter;
-    private LetterState[] state;
+    private LetterState state;
 
-    public Square(char letter, LetterState[] state) {
+    public Square(char letter, LetterState state) {
         this.letter = letter;
         this.state = state;
     }
@@ -16,11 +16,11 @@ public class Square {
         return letter;
     }
 
-    public void setState(LetterState[] state) {
+    public void setState(LetterState state) {
         this.state = state;
     }
 
-    public LetterState[] getState() {
+    public LetterState getState() {
         return state;
     }
 
