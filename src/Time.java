@@ -37,7 +37,7 @@ public class Time {
                 @Override
                 public void run() {
                     // Tell wordle the timer is up
-                    wordle.stopGame();
+                    //wordle.stopGame();
                     // Reset the timer class back to the default
                     endTime = null;
                     currentTimerTask = null;
@@ -59,4 +59,3 @@ public class Time {
             return Duration.ofMillis(millisUntil);
         }
     }
-}

@@ -1,10 +1,21 @@
 public class Display {
     private Square[][] grid;
-    private static final Wordle wordle = new Wordle();
+    private Wordle wordle;
 
     public Display() {
         grid = new Square[6][6];
         initializeGrid();
+    }
+
+    public void show (Wordle wordle){
+        this.wordle = wordle;
+        printGrid();
+        int guess = 0;
+        while(true){
+            var response = getPlayerGuess();
+            processGuess(response, guess);
+            guess++;
+        }
     }
 
     private void initializeGrid() {
@@ -47,7 +58,7 @@ public class Display {
                 String letter = String.valueOf(square.getLetter());
                 LetterState state = square.getState();
                 var color = getColorForState(state);
-                System.out.println(" " + color + letter + "|");
+                System.out.println(color + letter + "|");
             }
         }
         System.out.println("\n+------+------+------+------+------+------+");

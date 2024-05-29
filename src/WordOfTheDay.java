@@ -6,7 +6,7 @@ public class WordOfTheDay {
 
     public WordOfTheDay() {
         FileParse fileParse = new FileParse();
-        List<String> words = fileParse.getAllLinesFromFile("WordBank");
+        List<String> words = fileParse.getAllLinesFromFile("WordBank.txt");
         if (!words.isEmpty()) {
             Random random = new Random();
             int randomIndex = random.nextInt(words.size());

@@ -28,8 +28,8 @@ public class Main {
     public static void main(String[] args) {
         welcomeBanner();
         decideGamemode(gameRules());
+        wordle.start();
         display.show(wordle);
-        wordle.start(decideGamemode());
 
     }
 
@@ -42,7 +42,7 @@ public class Main {
     }
 
     public static int gameRules() {
-        System.out.println(ANSI_BOLD + "Welcome to 6-Letter Wordle!" + ANSI_RESET);
+        System.out.println(ANSI_BOLD + "\nWelcome to 6-Letter Wordle!" + ANSI_RESET);
         System.out.println("Rules:");
         System.out.println("- Guess the letters of the hidden word.");
         System.out.println("- Use the following colors as hints:");
