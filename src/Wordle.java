@@ -49,7 +49,6 @@ public class Wordle {
         guesses.add(guess);
         ArrayList<Character> word = Guess.getGuesses();
         ArrayList<Boolean> correctPositions = getCorrectPositions(guess);
-        
 
     }
 
