@@ -20,7 +20,7 @@ public class Display {
         }
     }
 
-    public String getPlayerGuess(){
+    public String getPlayerGuess() {
         System.out.println("Please enter a word: ");
         String guess = Main.scanner.nextLine();
         return guess;
