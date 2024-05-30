@@ -38,7 +38,7 @@ public class Wordle {
             squares[i] = square;
         }
 
-        return new GuessCheckResponse(hasIncorrect, squares);
+        return new GuessCheckResponse(!hasIncorrect, squares);
     }
 
 
