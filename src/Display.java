@@ -17,9 +17,11 @@ public class Display {
             int end = processGuess(response, guess);
             if(end == 1){
                 System.out.println("You have gotten the word!\nTime taken was: " + wordle.getTime());
+                break;
             } else if(end == -1){
                 System.out.println("Sorry, you have ran out of guesses\n." +
                         "the answer word was: " + wordle.getWordOfTheDay());
+                break;
             }
             guess++;
         }
@@ -99,19 +101,5 @@ public class Display {
         System.out.flush();
     }
 
-    /*public void endGame(Square[] square){
-        while (wordle.getGuess().getTotalGuesses() < 8) {
-            String guess = getUserInput();
-            var response = wordle.processGuess();
-            // Process the response
-            printGrid();
-            if (conditionToCheckIfAnswerWasCorrect == true) {
-                // Correct answer, so escape the loop!
-                break;
-            }
-        }
-    }
-
-     */
 }
 
