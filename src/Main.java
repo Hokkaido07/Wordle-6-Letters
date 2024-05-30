@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+import static java.lang.Integer.parseInt;
+
 public class Main {
 
     //Declaring all ANSI color codes
@@ -50,7 +52,8 @@ public class Main {
         System.out.println("  - Yellow: Correct letter in the wrong position");
         waitSecond();
         System.out.println("You can choose to play the Once a Day Mode or the Free Play Mode.\nType " + ANSI_BLUE + "[1]" + ANSI_RESET + " for once a day mode\nType " + ANSI_PURPLE + "[2]" + ANSI_RESET + " for free play.");
-        return scanner.nextInt();
+        String playerAnswer = scanner.nextLine();
+        return parseInt(playerAnswer);
     }
 
     public static void decideGamemode(int n) {
