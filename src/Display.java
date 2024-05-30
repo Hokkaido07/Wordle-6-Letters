@@ -67,21 +67,21 @@ public class Display {
                         "   \\_/\\_/\\___/_| \\__,_|_\\___|"
         );
 
-        System.out.println("+------+------+------+------+------+------+");
+        System.out.println("+-+-+-+-+-+-+");
         for (Square[] squares : grid) {
             System.out.print("|");
             for (Square square : squares) {
                 if (square == null) {
-                    System.out.println("|");
+                    System.out.println(" |");
                 } else {
                     String letter = String.valueOf(square.getLetter());
                     LetterState state = square.getState();
                     var color = getColorForState(state);
-                    System.out.print(color + letter + "|");
+                    System.out.print(color + letter + Main.ANSI_RESET + "|");
                 }
             }
             System.out.println();
-            System.out.println("+------+------+------+------+------+------+");
+            System.out.println("+-+-+-+--+-+-+");
         }
         var durationOnTimer = wordle.getTimeSinceStarted();
         System.out.println("Time: " + durationOnTimer.toMinutes() + " minutes and " + durationOnTimer.toSecondsPart() + " seconds.");
