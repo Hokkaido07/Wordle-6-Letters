@@ -1,7 +1,7 @@
 public class Display {
     private Square[][] grid;
     private Wordle wordle;
-    Guess guess = new Guess();
+
 
     public Display() {
         grid = new Square[6][6];
@@ -83,7 +83,7 @@ public class Display {
     }
 
     public void endGame(Square[] square){
-        while (guess.getTotalGuesses() < 8) {
+        while (wordle.getGuess().getTotalGuesses() < 8) {
             String guess = getUserInput();
             var response = wordle.processGuess();
             // Process the response

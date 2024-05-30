@@ -5,7 +5,6 @@ public class Wordle {
 
     private Guess guess = null;
     public WordOfTheDay wordOfTheDay;
-    private ArrayList<String> guesses;
     private Time time = new Time();
 
     public void start() {
@@ -45,13 +44,16 @@ public class Wordle {
 
     public GuessCheckResponse processGuess(String guess) {
         GuessCheckResponse isCorrect = isGuessCorrect(guess);
-        guesses.add(guess);
         return isCorrect;
 
     }
 
     public Duration getTimeSinceStarted(){
         return time.getDurationOnTimer();
+    }
+
+    public Guess getGuess(){
+        return guess;
     }
 
 
