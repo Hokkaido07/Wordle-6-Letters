@@ -55,10 +55,14 @@ public class Display {
         for (Square[] squares : grid) {
             System.out.print("|");
             for (Square square : squares) {
-                String letter = String.valueOf(square.getLetter());
-                LetterState state = square.getState();
-                var color = getColorForState(state);
-                System.out.print(color + letter + "|");
+                if (square == null) {
+                    System.out.println(" |");
+                } else {
+                    String letter = String.valueOf(square.getLetter());
+                    LetterState state = square.getState();
+                    var color = getColorForState(state);
+                    System.out.print(color + letter + "|");
+                }
             }
             System.out.println();
             System.out.println("+------+------+------+------+------+------+");
