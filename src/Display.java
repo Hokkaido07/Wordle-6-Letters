@@ -72,7 +72,7 @@ public class Display {
             System.out.print("|");
             for (Square square : squares) {
                 if (square == null) {
-                    System.out.println(" |");
+                    System.out.print(" |");
                 } else {
                     String letter = String.valueOf(square.getLetter());
                     LetterState state = square.getState();
@@ -81,7 +81,7 @@ public class Display {
                 }
             }
             System.out.println();
-            System.out.println("+-+-+-+--+-+-+");
+            System.out.println("+-+-+-+-+-+-+");
         }
         var durationOnTimer = wordle.getTimeSinceStarted();
         System.out.println("Time: " + durationOnTimer.toMinutes() + " minutes and " + durationOnTimer.toSecondsPart() + " seconds.");
