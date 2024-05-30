@@ -44,6 +44,7 @@ public class Wordle {
 
     public GuessCheckResponse processGuess(String guess) {
         GuessCheckResponse isCorrect = isGuessCorrect(guess);
+        this.guess.addGuess(guess);
         return isCorrect;
 
     }
