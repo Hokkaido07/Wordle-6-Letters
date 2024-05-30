@@ -62,6 +62,8 @@ public class Display {
             }
         }
         System.out.println("\n+------+------+------+------+------+------+");
+        var durationOnTimer = wordle.getTimeSinceStarted();
+        System.out.println("Time: " + durationOnTimer.toMinutes() + "minutes and " + durationOnTimer.toSecondsPart());
     }
 
 
