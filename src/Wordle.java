@@ -10,6 +10,7 @@ public class Wordle {
     public void start() {
         guess = new Guess();
         wordOfTheDay = new WordOfTheDay();
+        System.out.println(wordOfTheDay);
         time.start();
     }
 

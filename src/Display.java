@@ -56,7 +56,7 @@ public class Display {
             System.out.print("|");
             for (Square square : squares) {
                 if (square == null) {
-                    System.out.println(" |");
+                    System.out.println("|");
                 } else {
                     String letter = String.valueOf(square.getLetter());
                     LetterState state = square.getState();
@@ -68,7 +68,7 @@ public class Display {
             System.out.println("+------+------+------+------+------+------+");
         }
         var durationOnTimer = wordle.getTimeSinceStarted();
-        System.out.println("Time: " + durationOnTimer.toMinutes() + " minutes and " + durationOnTimer.toSecondsPart());
+        System.out.println("Time: " + durationOnTimer.toMinutes() + " minutes and " + durationOnTimer.toSecondsPart() + " seconds.");
     }
 
 
@@ -86,7 +86,7 @@ public class Display {
         System.out.flush();
     }
 
-    public void endGame(Square[] square){
+    /*public void endGame(Square[] square){
         while (wordle.getGuess().getTotalGuesses() < 8) {
             String guess = getUserInput();
             var response = wordle.processGuess();
@@ -98,5 +98,7 @@ public class Display {
             }
         }
     }
+
+     */
 }
 
