@@ -51,27 +51,27 @@ public class Display {
         );
 
         System.out.println("+------+------+------+------+------+------+");
-        for (int i = 0; i < grid.length; i++) {
+        for (Square[] squares : grid) {
             System.out.print("|");
-            for (int j = 0; j < grid[i].length; j++) {
-                Square square = grid[i][j];
+            for (Square square : squares) {
                 String letter = String.valueOf(square.getLetter());
                 LetterState state = square.getState();
                 var color = getColorForState(state);
-                System.out.println(color + letter + "|");
+                System.out.print(color + letter + "|");
             }
+            System.out.println();
+            System.out.println("+------+------+------+------+------+------+");
         }
-        System.out.println("\n+------+------+------+------+------+------+");
         var durationOnTimer = wordle.getTimeSinceStarted();
-        System.out.println("Time: " + durationOnTimer.toMinutes() + "minutes and " + durationOnTimer.toSecondsPart());
+        System.out.println("Time: " + durationOnTimer.toMinutes() + " minutes and " + durationOnTimer.toSecondsPart());
     }
 
 
     public String getColorForState(LetterState state) {
         return switch (state) {
-            case CORRECT -> "\u001B[32m"; // Green color
-            case WRONG_PLACE -> "\u001B[33m"; // Yellow color
-            case INCORRECT -> "\u001B[37m"; // Grey color
+            case CORRECT -> "\u001B[32m"; // Green color code
+            case WRONG_PLACE -> "\u001B[33m"; // Yellow color code
+            case INCORRECT -> "\u001B[37m"; // Grey color code
         };
     }
 
@@ -79,6 +79,12 @@ public class Display {
     private void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+    public void endGame(Square[] square){
+        int remainingGuesses =
+
+
     }
 }
 
