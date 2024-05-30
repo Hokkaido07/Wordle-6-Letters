@@ -14,7 +14,13 @@ public class Display {
         int guess = 0;
         while(true){
             var response = getPlayerGuess();
-            processGuess(response, guess);
+            int end = processGuess(response, guess);
+            if(end == 1){
+                System.out.println("You have gotten the word!\nTime taken was: " + wordle.getTime());
+            } else if(end == -1){
+                System.out.println("Sorry, you have ran out of guesses\n." +
+                        "the answer word was: " + wordle.getWordOfTheDay());
+            }
             guess++;
         }
     }
@@ -33,13 +39,20 @@ public class Display {
         return guess;
     }
 
-    public void processGuess(String playersGuess, int index) {
+    public int processGuess(String playersGuess, int index) {
         var response = wordle.processGuess(playersGuess);
         var rowForGuess = grid[index];
         for (int i = 0; i < response.squares().length; i++) {
             rowForGuess[i] = response.squares()[i];
         }
         printGrid();
+        if(response.correct()){
+            return 1;
+        }
+        if(wordle.getGuess().getTotalGuesses() == 7){
+            return -1;
+        }
+        return 0;
     }
 
     public void printGrid() {

@@ -1,5 +1,4 @@
 import java.time.Duration;
-import java.util.ArrayList;
 
 public class Wordle {
 
@@ -10,7 +9,7 @@ public class Wordle {
     public void start() {
         guess = new Guess();
         wordOfTheDay = new WordOfTheDay();
-        System.out.println(wordOfTheDay);
+        System.out.println("Answer Word: " + wordOfTheDay.getWord());
         time.start();
     }
 
@@ -58,7 +57,13 @@ public class Wordle {
         return guess;
     }
 
+    public WordOfTheDay getWordOfTheDay() {
+        return wordOfTheDay;
+    }
 
+    public Time getTime() {
+        return time;
+    }
 }
 
 
