@@ -29,7 +29,7 @@ public class Display {
         Main.waitSecond();
         System.out.println("Would you like to play again?\n" + Main.ANSI_BLUE + "[1]" + Main.ANSI_RESET + "for yes\n" + Main.ANSI_PURPLE + "[2]" + Main.ANSI_RESET + "for no.");
         int playAgain = Main.scanner.nextInt();
-        if(playAgain == 2){
+        while(playAgain == 2){
             break;
         }
     }
