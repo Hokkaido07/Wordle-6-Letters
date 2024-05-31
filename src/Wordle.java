@@ -4,7 +4,7 @@ public class Wordle {
 
     private Guess guess = null;
     public WordOfTheDay wordOfTheDay;
-    private Time time = new Time();
+    private final Time time = new Time();
 
     public void start() {
         guess = new Guess();
