@@ -9,28 +9,30 @@ public class Display {
 
     public void show(Wordle wordle) {
         this.wordle = wordle;
-        printGrid();
-        int guess = 0;
         while (true) {
-            var response = getPlayerGuess();
-            int end = processGuess(response, guess);
-            if (end == 1) {
-                var durationOnTimer = wordle.getTimeSinceStarted();
-                System.out.println("You have gotten the word!\nTime taken was: " + durationOnTimer.toMinutes() + " minutes and " + durationOnTimer.toSecondsPart() + " seconds.");
-            } else if (end == -1) {
-                System.out.println("Sorry, you have ran out of guesses\n." +
-                        "the answer word was: " + wordle.getWordOfTheDay());
-            } else if (end == -2) {
-                System.out.println("Your word is either invalid or already guessed. Please try again: ");
-                continue;
+            printGrid();
+            int guess = 0;
+            while (true) {
+                var response = getPlayerGuess();
+                int end = processGuess(response, guess);
+                if (end == 1) {
+                    var durationOnTimer = wordle.getTimeSinceStarted();
+                    System.out.println("You have gotten the word!\nTime taken was: " + durationOnTimer.toMinutes() + " minutes and " + durationOnTimer.toSecondsPart() + " seconds.");
+                } else if (end == -1) {
+                    System.out.println("Sorry, you have ran out of guesses\n." +
+                            "the answer word was: " + wordle.getWordOfTheDay());
+                    break;
+                } else if (end == -2) {
+                    System.out.println("Your word is either invalid or already guessed. Please try again: ");
+                    continue;
+                }
+                guess++;
             }
-            guess++;
-        }
-        Main.waitSecond();
-        System.out.println("Would you like to play again?\n" + Main.ANSI_BLUE + "[1]" + Main.ANSI_RESET + "for yes\n" + Main.ANSI_PURPLE + "[2]" + Main.ANSI_RESET + "for no.");
-        int playAgain = Main.scanner.nextInt();
-        while(playAgain == 2){
-            break;
+            System.out.println("Would you like to play again?\n" + Main.ANSI_BLUE + "[1]" + Main.ANSI_RESET + "for yes\n" + Main.ANSI_PURPLE + "[2]" + Main.ANSI_RESET + "for no.");
+            int playAgain = Main.scanner.nextInt();
+            if(playAgain == 2) {
+                break;
+            }
         }
     }
 

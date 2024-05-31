@@ -23,7 +23,7 @@ public class Wordle {
     /**
      * This method checks whether the guess letters are equivalent to the answer letters.
      * @param guess user input guess
-     * @return
+     * @return GuessCheckResponse for whether the guess is correct, the square on the grid for the character, and whether the user needs to guess again
      */
     public GuessCheckResponse isGuessCorrect(String guess) {
         String answer = wordOfTheDay.getWord();
