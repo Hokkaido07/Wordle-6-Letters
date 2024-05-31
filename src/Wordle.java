@@ -30,6 +30,7 @@ public class Wordle {
                 state = LetterState.CORRECT;
             } else if (answer.contains(guessChar + "")) {
                 state = LetterState.WRONG_PLACE;
+                hasIncorrect = true;
             } else {
                 state = LetterState.INCORRECT;
                 hasIncorrect = true;
@@ -43,7 +44,7 @@ public class Wordle {
 
 
     public GuessCheckResponse processGuess(String guess) {
-        if(!this.guess.isRealWord(guess) || this.guess.isDuplicateWord(guess)){
+        if (!this.guess.isRealWord(guess) || this.guess.isDuplicateWord(guess)) {
             return new GuessCheckResponse(false, null, true);
         }
         GuessCheckResponse isCorrect = isGuessCorrect(guess);
@@ -51,11 +52,11 @@ public class Wordle {
         return isCorrect;
     }
 
-    public Duration getTimeSinceStarted(){
+    public Duration getTimeSinceStarted() {
         return time.getDurationOnTimer();
     }
 
-    public Guess getGuess(){
+    public Guess getGuess() {
         return guess;
     }
 
@@ -63,9 +64,6 @@ public class Wordle {
         return wordOfTheDay;
     }
 
-    public Time getTime() {
-        return time;
-    }
 }
 
 

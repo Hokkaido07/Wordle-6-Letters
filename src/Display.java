@@ -1,28 +1,30 @@
 public class Display {
     private final Square[][] grid;
     private Wordle wordle;
-    private WordOfTheDay wordOfTheDay;
 
     public Display() {
         grid = new Square[6][6];
         initializeGrid();
     }
 
-    public void show (Wordle wordle){
+    public void show(Wordle wordle) {
         this.wordle = wordle;
         printGrid();
         int guess = 0;
-        while(true){
+        while (true) {
             var response = getPlayerGuess();
             int end = processGuess(response, guess);
-            if(end == 1){
+            if (end == 1) {
                 var durationOnTimer = wordle.getTimeSinceStarted();
-                System.out.println("You have gotten the word!\nTime taken was: "+ durationOnTimer.toMinutes() + " minutes and " + durationOnTimer.toSecondsPart() + " seconds.");
+                System.out.println("You have gotten the word!\nTime taken was: " + durationOnTimer.toMinutes() + " minutes and " + durationOnTimer.toSecondsPart() + " seconds.");
                 break;
-            } else if(end == -1){
+            } else if (end == -1) {
                 System.out.println("Sorry, you have ran out of guesses\n." +
                         "the answer word was: " + wordle.getWordOfTheDay());
                 break;
+            } else if (end == -2) {
+                System.out.println("Your word is either invalid or already guessed. Please try again: ");
+                continue;
             }
             guess++;
         }
@@ -38,21 +40,23 @@ public class Display {
 
     public String getPlayerGuess() {
         System.out.println("Please enter a word: ");
-        String guess = Main.scanner.nextLine();
-        return guess;
+        return Main.scanner.nextLine();
     }
 
     public int processGuess(String playersGuess, int index) {
         var response = wordle.processGuess(playersGuess);
+        if (response.guessAgain()) {
+            return -2;
+        }
         var rowForGuess = grid[index];
         for (int i = 0; i < response.squares().length; i++) {
             rowForGuess[i] = response.squares()[i];
         }
         printGrid();
-        if(response.correct() && playersGuess.equals(this.wordOfTheDay.getWord())){
+        if (response.correct()) {
             return 1;
         }
-        if(wordle.getGuess().getTotalGuesses() == 7){
+        if (wordle.getGuess().getTotalGuesses() == 7) {
             return -1;
         }
         return 0;
@@ -61,10 +65,11 @@ public class Display {
     public void printGrid() {
         clearScreen();
         System.out.println(
-                " __      __          _ _     \n" +
-                        " \\ \\    / /__ _ _ __| | |___ \n" +
-                        "  \\ \\/\\/ / _ \\ '_/ _` | / -_)\n" +
-                        "   \\_/\\_/\\___/_| \\__,_|_\\___|"
+                """
+                        __      __          _ _    \s
+                        \\ \\    / /__ _ _ __| | |___\s
+                         \\ \\/\\/ / _ \\ '_/ _` | / -_)
+                          \\_/\\_/\\___/_| \\__,_|_\\___|""".indent(1)
         );
 
         System.out.println("+-+-+-+-+-+-+");

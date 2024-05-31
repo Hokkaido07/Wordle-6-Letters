@@ -27,7 +27,7 @@ public class Guess {
     }
 
     public boolean isRealWord(String guess) {
-        FileParse fileparse  = new FileParse();
+        FileParse fileparse = new FileParse();
         return fileparse.isWordInFile(guess, "WordBank");
 
     }
