@@ -18,6 +18,7 @@ public class Display {
                 if (end == 1) {
                     var durationOnTimer = wordle.getTimeSinceStarted();
                     System.out.println("You have gotten the word!\nTime taken was: " + durationOnTimer.toMinutes() + " minutes and " + durationOnTimer.toSecondsPart() + " seconds.");
+                    break;
                 } else if (end == -1) {
                     System.out.println("Sorry, you have ran out of guesses\n." +
                             "the answer word was: " + wordle.getWordOfTheDay());
