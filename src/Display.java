@@ -8,7 +8,6 @@ public class Display {
     }
 
     public void show (Wordle wordle){
-        var durationOnTimer = wordle.getTimeSinceStarted();
         this.wordle = wordle;
         printGrid();
         int guess = 0;
@@ -16,6 +15,7 @@ public class Display {
             var response = getPlayerGuess();
             int end = processGuess(response, guess);
             if(end == 1){
+                var durationOnTimer = wordle.getTimeSinceStarted();
                 System.out.println("You have gotten the word!\nTime taken was: "+ durationOnTimer.toMinutes() + " minutes and " + durationOnTimer.toSecondsPart() + " seconds.");
                 break;
             } else if(end == -1){
