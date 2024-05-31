@@ -1,6 +1,7 @@
 public class Display {
     private final Square[][] grid;
     private Wordle wordle;
+    private WordOfTheDay wordOfTheDay;
 
     public Display() {
         grid = new Square[6][6];
@@ -48,7 +49,7 @@ public class Display {
             rowForGuess[i] = response.squares()[i];
         }
         printGrid();
-        if(response.correct()){
+        if(response.correct() && playersGuess.equals(this.wordOfTheDay.getWord())){
             return 1;
         }
         if(wordle.getGuess().getTotalGuesses() == 7){

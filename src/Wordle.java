@@ -38,13 +38,13 @@ public class Wordle {
             squares[i] = square;
         }
 
-        return new GuessCheckResponse(!hasIncorrect, squares);
+        return new GuessCheckResponse(!hasIncorrect, squares, false);
     }
 
 
     public GuessCheckResponse processGuess(String guess) {
         if(!this.guess.isRealWord(guess) || this.guess.isDuplicateWord(guess)){
-            boolean checkGuess = false;
+            return new GuessCheckResponse(false, null, true);
         }
         GuessCheckResponse isCorrect = isGuessCorrect(guess);
         this.guess.addGuess(guess);

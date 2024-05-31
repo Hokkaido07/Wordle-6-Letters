@@ -29,7 +29,7 @@ public class Main {
 
     public static void main(String[] args) {
         welcomeBanner();
-        decideGamemode(gameRules());
+        decideGamemode(gameMenu());
         wordle.start();
         display.show(wordle);
 
@@ -43,7 +43,7 @@ public class Main {
 
     }
 
-    public static int gameRules() {
+    public static int gameMenu() {
         System.out.println(ANSI_BOLD + "\nWelcome to 6-Letter Wordle!" + ANSI_RESET);
         System.out.println("Rules:");
         System.out.println("- Guess the letters of the 6-letter word.");
@@ -52,7 +52,9 @@ public class Main {
         System.out.println("  - Yellow: Correct letter in the wrong position");
         System.out.println("  - Grey: Incorrect letter");
         waitSecond();
-        System.out.println("You can choose to play the Once a Day Mode or the Free Play Mode.\nType " + ANSI_BLUE + "[1]" + ANSI_RESET + " for once a day mode\nType " + ANSI_PURPLE + "[2]" + ANSI_RESET + " for free play.");
+        System.out.println("Enter your username: ");
+        String username = scanner.nextLine();
+        System.out.println("Welcome " + ANSI_BOLD + ANSI_CYAN + username + ANSI_RESET + " can choose to play the Once a Day Mode or the Free Play Mode.\nType " + ANSI_BLUE + "[1]" + ANSI_RESET + " for once a day mode\nType " + ANSI_PURPLE + "[2]" + ANSI_RESET + " for free play.");
         String playerAnswer = scanner.nextLine();
         return parseInt(playerAnswer);
     }
