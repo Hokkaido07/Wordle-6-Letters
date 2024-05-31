@@ -26,24 +26,16 @@ public class Guess {
         return guessCount == 6;
     }
 
-    public static boolean isRealWord() {
-        StringBuilder wordBuilder = new StringBuilder();
-        for (Character[] row : letters) {
-            for (Character letter : row) {
-                if (letter != null) {
-                    wordBuilder.append(letter);
-                }
-            }
-        }
-        String word = wordBuilder.toString();
+    public boolean isRealWord(String guess) {
+        FileParse fileparse  = new FileParse();
+        return fileparse.isWordInFile(guess, "WordBank");
 
-        FileParse fileParse = new FileParse();
-        return fileParse.isWordInFile(word, "WordBank");
     }
 
-    public boolean isDuplicateWord(Guess[] previousGuesses) {
-        for (Guess guess : previousGuesses) {
-            if (Arrays.deepEquals(guess.letters, this.letters)) {
+    public boolean isDuplicateWord(String guess) {
+        var wordCharArray = convertWordToCharacters(guess);
+        for (var guesses : getGuesses()) {
+            if (Arrays.deepEquals(guesses, wordCharArray)) {
                 return true;
             }
         }

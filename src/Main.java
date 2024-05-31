@@ -46,7 +46,7 @@ public class Main {
     public static int gameRules() {
         System.out.println(ANSI_BOLD + "\nWelcome to 6-Letter Wordle!" + ANSI_RESET);
         System.out.println("Rules:");
-        System.out.println("- Guess the letters of the hidden word.");
+        System.out.println("- Guess the letters of the 6-letter word.");
         System.out.println("- Use the following colors as hints:");
         System.out.println("  - Green: Correct letter in the correct position");
         System.out.println("  - Yellow: Correct letter in the wrong position");

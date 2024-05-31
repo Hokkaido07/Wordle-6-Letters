@@ -43,10 +43,12 @@ public class Wordle {
 
 
     public GuessCheckResponse processGuess(String guess) {
+        if(!this.guess.isRealWord(guess) || this.guess.isDuplicateWord(guess)){
+            boolean checkGuess = false;
+        }
         GuessCheckResponse isCorrect = isGuessCorrect(guess);
         this.guess.addGuess(guess);
         return isCorrect;
-
     }
 
     public Duration getTimeSinceStarted(){

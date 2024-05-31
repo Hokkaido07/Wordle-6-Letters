@@ -1,4 +1,4 @@
-public record GuessCheckResponse(boolean correct, Square[] squares){
+public record GuessCheckResponse(boolean correct, Square[] squares, boolean guessAgain){
 
     }
 
