@@ -50,6 +50,7 @@ public class Main {
         System.out.println("- Use the following colors as hints:");
         System.out.println("  - Green: Correct letter in the correct position");
         System.out.println("  - Yellow: Correct letter in the wrong position");
+        System.out.println("  - Grey: Incorrect letter");
         waitSecond();
         System.out.println("You can choose to play the Once a Day Mode or the Free Play Mode.\nType " + ANSI_BLUE + "[1]" + ANSI_RESET + " for once a day mode\nType " + ANSI_PURPLE + "[2]" + ANSI_RESET + " for free play.");
         String playerAnswer = scanner.nextLine();

@@ -1,7 +1,6 @@
 public class Display {
-    private Square[][] grid;
+    private final Square[][] grid;
     private Wordle wordle;
-
 
     public Display() {
         grid = new Square[6][6];

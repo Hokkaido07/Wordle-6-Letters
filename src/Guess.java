@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class Guess {
-    private final Character[][] letters = new Character[6][6];
+    private static final Character[][] letters = new Character[6][6];
     private int guessCount;
 
     public boolean addGuess(String word) {
