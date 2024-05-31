@@ -1,3 +1,6 @@
+/**
+ * This class is used to store information for one "square" on the grid, which represents one letter.
+ */
 public class Square {
 
     private final char letter;

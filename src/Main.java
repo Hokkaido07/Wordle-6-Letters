@@ -31,6 +31,9 @@ public class Main {
 
     }
 
+    /**
+     * This method is for printing the welcome banner at the start of the game.
+     */
     public static void welcomeBanner() {
         System.out.print("""
                   __   _        _   _            __      __          _ _    \s
@@ -40,6 +43,10 @@ public class Main {
 
     }
 
+    /**
+     * This method is the game menu with the rules of how to play. setting the username, and asking the user to determine which mode they want to play.
+     * @return user input for gamemode
+     */
     public static int gameMenu() {
         System.out.println(ANSI_BOLD + "\nWelcome to 6-Letter Wordle!" + ANSI_RESET);
         System.out.println("Rules:");
@@ -56,6 +63,10 @@ public class Main {
         return parseInt(playerAnswer);
     }
 
+    /**
+     * Decides the gamemode. If the user picked 1, it will determine whether the user has already played once today.
+     * @param n user input for gamemode
+     */
     public static void decideGamemode(int n) {
         if (n == 1) {
             if (new PlayedToday().isPlayedToday("LastPlayedDate")) {
@@ -77,8 +88,10 @@ public class Main {
         }
     }
 
-
-    public static void waitSecond() { //This method is used to delay the printing of the next line to allow the user enough time to read the message.
+    /**
+     * This method is to slow down the display, allowing the user enough time to read the message slowly.
+     */
+    public static void waitSecond() {
         try {
             Thread.sleep(2000);
         } catch (InterruptedException ex) {

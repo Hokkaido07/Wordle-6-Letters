@@ -1,5 +1,8 @@
 import java.time.Duration;
 
+/**
+ * This class is used for the stopwatch.
+ */
 public class Time {
         private Long startTime = null;
 

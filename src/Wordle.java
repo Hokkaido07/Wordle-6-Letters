@@ -1,18 +1,30 @@
 import java.time.Duration;
 
+/**
+ * This is the Wordle class that contains all the logic for the game.
+ */
+
 public class Wordle {
 
     private Guess guess = null;
     public WordOfTheDay wordOfTheDay;
     private final Time time = new Time();
 
+    /**
+     * Starts the process for guessing a word.
+     */
     public void start() {
         guess = new Guess();
         wordOfTheDay = new WordOfTheDay();
-        System.out.println("Answer Word: " + wordOfTheDay.getWord());
+        System.out.println("Answer Word: " + wordOfTheDay.getWord()); //This line is only used for testing purposes to check that the program is correcting matching color codes to letters
         time.start();
     }
 
+    /**
+     * This method checks whether the guess letters are equivalent to the answer letters.
+     * @param guess user input guess
+     * @return
+     */
     public GuessCheckResponse isGuessCorrect(String guess) {
         String answer = wordOfTheDay.getWord();
         if (guess.length() != answer.length()) {
@@ -42,7 +54,11 @@ public class Wordle {
         return new GuessCheckResponse(!hasIncorrect, squares, false);
     }
 
-
+    /**
+     * This method processes the user's guess.
+     * @param guess user input guess
+     * @return
+     */
     public GuessCheckResponse processGuess(String guess) {
         if (!this.guess.isRealWord(guess) || this.guess.isDuplicateWord(guess)) {
             return new GuessCheckResponse(false, null, true);
@@ -52,14 +68,26 @@ public class Wordle {
         return isCorrect;
     }
 
+    /**
+     * This method gets the time since the game has started.
+     * @return amount of time since game started
+     */
     public Duration getTimeSinceStarted() {
         return time.getDurationOnTimer();
     }
 
+    /**
+     * Get guess from Guess class
+     * @return user input guess
+     */
     public Guess getGuess() {
         return guess;
     }
 
+    /**
+     * Get word of the day from WordOfTheDay class
+     * @return String for wordOfTheDay
+     */
     public WordOfTheDay getWordOfTheDay() {
         return wordOfTheDay;
     }

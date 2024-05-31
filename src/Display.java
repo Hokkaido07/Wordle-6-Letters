@@ -17,19 +17,26 @@ public class Display {
             if (end == 1) {
                 var durationOnTimer = wordle.getTimeSinceStarted();
                 System.out.println("You have gotten the word!\nTime taken was: " + durationOnTimer.toMinutes() + " minutes and " + durationOnTimer.toSecondsPart() + " seconds.");
-                break;
             } else if (end == -1) {
                 System.out.println("Sorry, you have ran out of guesses\n." +
                         "the answer word was: " + wordle.getWordOfTheDay());
-                break;
             } else if (end == -2) {
                 System.out.println("Your word is either invalid or already guessed. Please try again: ");
                 continue;
             }
             guess++;
         }
+        Main.waitSecond();
+        System.out.println("Would you like to play again?\n" + Main.ANSI_BLUE + "[1]" + Main.ANSI_RESET + "for yes\n" + Main.ANSI_PURPLE + "[2]" + Main.ANSI_RESET + "for no.");
+        int playAgain = Main.scanner.nextInt();
+        if(playAgain == 2){
+            break;
+        }
     }
 
+    /**
+     * This method initializes a grid of [6][6] using a 2D array.
+     */
     private void initializeGrid() {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 6; j++) {
@@ -38,11 +45,21 @@ public class Display {
         }
     }
 
+    /**
+     * This method takes a guess from the player.
+     * @return input from user
+     */
     public String getPlayerGuess() {
         System.out.println("Please enter a word: ");
         return Main.scanner.nextLine();
     }
 
+    /**
+     * This method processes the guess and checks whether the user has entered an invalid word, correctly guessed the word or run out of tries.
+     * @param playersGuess user input guess
+     * @param index grid index
+     * @return integer for whether the guess is correct
+     */
     public int processGuess(String playersGuess, int index) {
         var response = wordle.processGuess(playersGuess);
         if (response.guessAgain()) {
@@ -56,12 +73,15 @@ public class Display {
         if (response.correct()) {
             return 1;
         }
-        if (wordle.getGuess().getTotalGuesses() == 7) {
+        if (wordle.getGuess().getTotalGuesses() == 6) {
             return -1;
         }
         return 0;
     }
 
+    /**
+     * This method prints the Wordle grid.
+     */
     public void printGrid() {
         clearScreen();
         System.out.println(
@@ -92,7 +112,11 @@ public class Display {
         System.out.println("Time: " + durationOnTimer.toMinutes() + " minutes and " + durationOnTimer.toSecondsPart() + " seconds.");
     }
 
-
+    /**
+     * This method gets the colors for the different states of a letter
+     * @param state State of the letter
+     * @return String of corresponding color code
+     */
     public String getColorForState(LetterState state) {
         return switch (state) {
             case CORRECT -> "\u001B[32m"; // Green color code
@@ -101,7 +125,9 @@ public class Display {
         };
     }
 
-
+    /**
+     * This method clears the screen.
+     */
     private void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
