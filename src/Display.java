@@ -21,7 +21,7 @@ public class Display {
                     break;
                 } else if (end == -1) {
                     System.out.println("Sorry, you have ran out of guesses\n." +
-                            "the answer word was: " + wordle.getWordOfTheDay());
+                            "the answer word was: " + this.wordle.getWordOfTheDay());
                     break;
                 } else if (end == -2) {
                     System.out.println("Your word is either invalid or already guessed. Please try again: ");

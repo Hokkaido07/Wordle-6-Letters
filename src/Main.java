@@ -1,6 +1,6 @@
 /**
  * This is the end of semester 2 project - 6-Letter Wordle.
- *
+ * Author:
  * Date: 05-31-2024
  */
 
