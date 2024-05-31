@@ -1,3 +1,9 @@
+/**
+ * This is the end of semester 2 project - 6-Letter Wordle.
+ *
+ * Date: 05-31-2024
+ */
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +21,8 @@ public class Main {
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_BOLD = "\u001B[1m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
 
     private static final String FILE_PATH = "LastPlayedDate";
     public static Scanner scanner = new Scanner(System.in);
@@ -52,8 +60,8 @@ public class Main {
         System.out.println("Rules:");
         System.out.println("- Guess the letters of the 6-letter word.");
         System.out.println("- Use the following colors as hints:");
-        System.out.println("  - Green: Correct letter in the correct position");
-        System.out.println("  - Yellow: Correct letter in the wrong position");
+        System.out.println("  - " + ANSI_GREEN + "Green" + ANSI_RESET + ": Correct letter in the correct position");
+        System.out.println("  - " + ANSI_YELLOW + "Yellow" + ANSI_RESET + ": Correct letter in the wrong position");
         System.out.println("  - Grey: Incorrect letter");
         waitSecond();
         System.out.println("Enter your username: ");
