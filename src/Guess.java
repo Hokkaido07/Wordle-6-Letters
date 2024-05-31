@@ -26,7 +26,7 @@ public class Guess {
         return guessCount == 6;
     }
 
-    public boolean isRealWord() {
+    public static boolean isRealWord() {
         StringBuilder wordBuilder = new StringBuilder();
         for (Character[] row : letters) {
             for (Character letter : row) {
@@ -38,7 +38,7 @@ public class Guess {
         String word = wordBuilder.toString();
 
         FileParse fileParse = new FileParse();
-        return fileParse.isWordInFile(word, "WordBank.txt");
+        return fileParse.isWordInFile(word, "WordBank");
     }
 
     public boolean isDuplicateWord(Guess[] previousGuesses) {

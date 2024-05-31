@@ -58,6 +58,10 @@ public class Main {
 
     public static void decideGamemode(int n) {
         if (n == 1) {
+            if(new PlayedToday().isPlayedToday("LastPlayedDate")){
+                System.out.println("Sorry, you have already played today.");
+                System.exit(1);
+            }
             Date currentDate = new Date();
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
             String formattedDate = dateFormat.format(currentDate);
