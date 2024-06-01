@@ -11,8 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-import static java.lang.Integer.parseInt;
-
 public class Main {
 
     //Declaring all ANSI color codes
@@ -33,26 +31,21 @@ public class Main {
 
     public static void main(String[] args) {
         welcomeBanner();
-        int gameMode = gameMenu();
-        decideGamemode(gameMode);
-        wordle.start();
-        display.show(wordle);
         boolean continueGame = true;
-        while (continueGame){
+        while (continueGame) {
+            int gameMode = gameMenu();
+            decideGamemode(gameMode);
             wordle.start();
             display = new Display();
             display.show(wordle);
-            if(gameMode == 1){
+            System.out.println("Would you like to play again?\n" + Main.ANSI_BLUE + "[1]" + Main.ANSI_RESET + "for yes\n" + Main.ANSI_PURPLE + "[2]" + Main.ANSI_RESET + "for no.");
+            int response = Integer.parseInt(scanner.nextLine());
+            if (response == 2) {
                 continueGame = false;
-            } else {
-                System.out.println("Would you like to play again?\n" + Main.ANSI_BLUE + "[1]" + Main.ANSI_RESET + "for yes\n" + Main.ANSI_PURPLE + "[2]" + Main.ANSI_RESET + "for no.");
-                int response = Integer.parseInt(scanner.nextLine());
-                if(response == 1){
-                    continueGame = false;
-                }
             }
         }
     }
+
 
     /**
      * This method is for printing the welcome banner at the start of the game.
@@ -68,6 +61,7 @@ public class Main {
 
     /**
      * This method is the game menu with the rules of how to play. setting the username, and asking the user to determine which mode they want to play.
+     *
      * @return user input for gamemode
      */
     public static int gameMenu() {
@@ -96,6 +90,7 @@ public class Main {
 
     /**
      * Decides the gamemode. If the user picked 1, it will determine whether the user has already played once today.
+     *
      * @param n user input for gamemode
      */
     public static void decideGamemode(int n) {
