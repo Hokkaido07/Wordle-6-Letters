@@ -130,16 +130,5 @@ public class Main {
         }
     }
 
-    public static int playAgain(){
-        System.out.println("Would you like to play again?\n" + Main.ANSI_BLUE + "[1]" + Main.ANSI_RESET + "for yes\n" + Main.ANSI_PURPLE + "[2]" + Main.ANSI_RESET + "for no.");
-        if(Main.scanner.nextInt() == 2){
-            System.exit(0);
-        }
-        return Main.scanner.nextInt();
-
-    }
-
-
-
 
 }
