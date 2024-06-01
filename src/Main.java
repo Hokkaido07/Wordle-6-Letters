@@ -39,10 +39,14 @@ public class Main {
         display.show(wordle);
 
         while (playAgain() == 1) {
+            Wordle newRound = new Wordle();
+            Guess newRoundGuess = new Guess();
+            Display newDisplay = new Display();
+            WordOfTheDay newRoundguess = new WordOfTheDay();
             gameMode = gameMenu();
             decideGamemode(gameMode);
-            wordle.start();
-            display.show(wordle);
+            newRound.start();
+            newDisplay.show(wordle);
         }
     }
 
