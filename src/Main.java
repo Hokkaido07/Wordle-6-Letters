@@ -23,11 +23,12 @@ public class Main {
     public static final String ANSI_BOLD = "\u001B[1m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_RED = "\u001B[31m";
 
     private static final String FILE_PATH = "LastPlayedDate";
     public static Scanner scanner = new Scanner(System.in);
 
-    private static final Wordle wordle = new Wordle();
+    private static Wordle wordle = new Wordle();
     private static final Display display = new Display();
 
 
@@ -36,7 +37,14 @@ public class Main {
         decideGamemode(gameMenu());
         wordle.start();
         display.show(wordle);
-
+        while(playAgain() ==1 ){
+            decideGamemode(playAgainMenu());
+            wordle.start();
+            display.show(wordle);
+        }
+        if(playAgain() == 2){
+            System.exit(0);
+        }
     }
 
     /**
@@ -106,6 +114,17 @@ public class Main {
             Thread.currentThread().interrupt();
         }
     }
+
+    public static int playAgain(){
+        System.out.println("Would you like to play again?\n" + Main.ANSI_BLUE + "[1]" + Main.ANSI_RESET + "for yes\n" + Main.ANSI_PURPLE + "[2]" + Main.ANSI_RESET + "for no.");
+        return Main.scanner.nextInt();
+    }
+
+    public static int playAgainMenu(){
+        System.out.println("\nPlease choose your next gamemode.\nType " + ANSI_BLUE + "[1]" + ANSI_RESET + " for once a day mode\nType " + ANSI_PURPLE + "[2]" + ANSI_RESET + " for free play.");
+        return scanner.nextInt();
+    }
+
 
 
 }

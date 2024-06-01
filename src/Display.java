@@ -9,30 +9,26 @@ public class Display {
 
     public void show(Wordle wordle) {
         this.wordle = wordle;
-        while (true) {
+        boolean continueGame = true;
+
+        while (continueGame) {
             printGrid();
             int guess = 0;
-            while (true) {
+            while (continueGame) {
                 var response = getPlayerGuess();
                 int end = processGuess(response, guess);
                 if (end == 1) {
                     var durationOnTimer = wordle.getTimeSinceStarted();
-                    System.out.println("You have gotten the word!\nTime taken was: " + durationOnTimer.toMinutes() + " minutes and " + durationOnTimer.toSecondsPart() + " seconds.");
-                    break;
+                    System.out.println("You have guessed the word!\nTime taken was: " + durationOnTimer.toMinutes() + " minutes and " + durationOnTimer.toSecondsPart() + " seconds.");
+                    continueGame = false; // Exit the inner loop
                 } else if (end == -1) {
-                    System.out.println("Sorry, you have ran out of guesses\n." +
-                            "the answer word was: " + this.wordle.getWordOfTheDay());
-                    break;
+                    System.out.println("Sorry, you have run out of guesses.\nThe answer word was: " + wordle.getWordOfTheDay());
+                    continueGame = false; // Exit both loops
                 } else if (end == -2) {
-                    System.out.println("Your word is either invalid or already guessed. Please try again: ");
-                    continue;
+                    System.out.println(Main.ANSI_RED + Main.ANSI_BOLD + "Your word is either invalid or already guessed. Please try again. " + Main.ANSI_RESET);
+                    continue; // Continue the inner loop
                 }
                 guess++;
-            }
-            System.out.println("Would you like to play again?\n" + Main.ANSI_BLUE + "[1]" + Main.ANSI_RESET + "for yes\n" + Main.ANSI_PURPLE + "[2]" + Main.ANSI_RESET + "for no.");
-            int playAgain = Main.scanner.nextInt();
-            if(playAgain == 2) {
-                break;
             }
         }
     }
@@ -135,6 +131,8 @@ public class Display {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+
+
 
 }
 
