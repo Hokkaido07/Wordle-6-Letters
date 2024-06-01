@@ -28,22 +28,22 @@ public class Main {
     private static final String FILE_PATH = "LastPlayedDate";
     public static Scanner scanner = new Scanner(System.in);
 
-    private static Wordle wordle = new Wordle();
+    private static final Wordle wordle = new Wordle();
     private static final Display display = new Display();
 
 
     public static void main(String[] args) {
         welcomeBanner();
-        decideGamemode(gameMenu());
+        int gameMode = gameMenu();
+        decideGamemode(gameMode);
         wordle.start();
         display.show(wordle);
-        while(playAgain() ==1 ){
-            decideGamemode(playAgainMenu());
+
+        while (playAgain() == 1) {
+            gameMode = gameMenu();
+            decideGamemode(gameMode);
             wordle.start();
             display.show(wordle);
-        }
-        if(playAgain() == 2){
-            System.exit(0);
         }
     }
 
@@ -72,11 +72,19 @@ public class Main {
         System.out.println("  - " + ANSI_YELLOW + "Yellow" + ANSI_RESET + ": Correct letter in the wrong position");
         System.out.println("  - Grey: Incorrect letter");
         waitSecond();
-        System.out.println("Enter your username: ");
-        String username = scanner.nextLine();
-        System.out.println("Welcome " + ANSI_BOLD + ANSI_CYAN + username + ANSI_RESET + " can choose to play the Once a Day Mode or the Free Play Mode.\nType " + ANSI_BLUE + "[1]" + ANSI_RESET + " for once a day mode\nType " + ANSI_PURPLE + "[2]" + ANSI_RESET + " for free play.");
-        String playerAnswer = scanner.nextLine();
-        return parseInt(playerAnswer);
+        System.out.println("Welcome! You can choose to play the Once a Day Mode or the Free Play Mode.\nType " + ANSI_BLUE + "[1]" + ANSI_RESET + " for once a day mode\nType " + ANSI_PURPLE + "[2]" + ANSI_RESET + " for free play.");
+        while (true) {
+            String playerAnswer = scanner.nextLine();
+            if (playerAnswer.trim().isEmpty()) {
+                continue;
+            }
+
+            try {
+                return Integer.parseInt(playerAnswer);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+        }
     }
 
     /**
@@ -117,13 +125,13 @@ public class Main {
 
     public static int playAgain(){
         System.out.println("Would you like to play again?\n" + Main.ANSI_BLUE + "[1]" + Main.ANSI_RESET + "for yes\n" + Main.ANSI_PURPLE + "[2]" + Main.ANSI_RESET + "for no.");
+        if(Main.scanner.nextInt() == 2){
+            System.exit(0);
+        }
         return Main.scanner.nextInt();
+
     }
 
-    public static int playAgainMenu(){
-        System.out.println("\nPlease choose your next gamemode.\nType " + ANSI_BLUE + "[1]" + ANSI_RESET + " for once a day mode\nType " + ANSI_PURPLE + "[2]" + ANSI_RESET + " for free play.");
-        return scanner.nextInt();
-    }
 
 
 

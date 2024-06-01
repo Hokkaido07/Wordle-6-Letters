@@ -2,6 +2,7 @@ public class Display {
     private final Square[][] grid;
     private Wordle wordle;
 
+
     public Display() {
         grid = new Square[6][6];
         initializeGrid();
@@ -131,7 +132,6 @@ public class Display {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-
 
 
 }
