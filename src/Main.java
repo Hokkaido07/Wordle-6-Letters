@@ -28,7 +28,7 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     private static final Wordle wordle = new Wordle();
-    private static final Display display = new Display();
+    private static Display display = new Display();
 
 
     public static void main(String[] args) {
@@ -37,16 +37,20 @@ public class Main {
         decideGamemode(gameMode);
         wordle.start();
         display.show(wordle);
-
-        while (playAgain() == 1) {
-            Wordle newRound = new Wordle();
-            Guess newRoundGuess = new Guess();
-            Display newDisplay = new Display();
-            WordOfTheDay newRoundguess = new WordOfTheDay();
-            gameMode = gameMenu();
-            decideGamemode(gameMode);
-            newRound.start();
-            newDisplay.show(wordle);
+        boolean continueGame = true;
+        while (continueGame){
+            wordle.start();
+            display = new Display();
+            display.show(wordle);
+            if(gameMode == 1){
+                continueGame = false;
+            } else {
+                System.out.println("Would you like to play again?\n" + Main.ANSI_BLUE + "[1]" + Main.ANSI_RESET + "for yes\n" + Main.ANSI_PURPLE + "[2]" + Main.ANSI_RESET + "for no.");
+                int response = Integer.parseInt(scanner.nextLine());
+                if(response == 1){
+                    continueGame = false;
+                }
+            }
         }
     }
 
