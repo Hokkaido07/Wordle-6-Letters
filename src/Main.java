@@ -26,7 +26,6 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     private static final Wordle wordle = new Wordle();
-    private static Display display = new Display();
 
 
     public static void main(String[] args) {
@@ -36,11 +35,12 @@ public class Main {
             int gameMode = gameMenu();
             decideGamemode(gameMode);
             wordle.start();
-            display = new Display();
+            Display display = new Display();
             display.show(wordle);
-            System.out.println("Would you like to play again?\n" + Main.ANSI_BLUE + "[1]" + Main.ANSI_RESET + "for yes\n" + Main.ANSI_PURPLE + "[2]" + Main.ANSI_RESET + "for no.");
+            System.out.println("Would you like to play again?\n" + Main.ANSI_BLUE + "[1] " + Main.ANSI_RESET + "for yes\n" + Main.ANSI_PURPLE + "[2] " + Main.ANSI_RESET + "for no.");
             int response = Integer.parseInt(scanner.nextLine());
             if (response == 2) {
+                System.out.println("Thank you for playing!");
                 continueGame = false;
             }
         }
