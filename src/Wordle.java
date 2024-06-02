@@ -1,4 +1,6 @@
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is the Wordle class that contains all the logic for the game.
@@ -16,7 +18,7 @@ public class Wordle {
     public void start() {
         guess = new Guess();
         wordOfTheDay = new WordOfTheDay();
-        System.out.println("Answer Word: " + wordOfTheDay.getWord()); //This line is only used for testing purposes to check that the program is correcting matching color codes to letters
+        System.out.println("Answer Word: " + WordOfTheDay.getWord()); //This line is only used for testing purposes to check that the program is correcting matching color codes to letters
         time.start();
     }
 
@@ -26,38 +28,48 @@ public class Wordle {
      * @return GuessCheckResponse for whether the guess is correct, the square on the grid for the character, and whether the user needs to guess again
      */
     public GuessCheckResponse isGuessCorrect(String guess) {
-        String answer = wordOfTheDay.getWord();
-        if (guess.length() != answer.length()) {
-            throw new IllegalArgumentException("Guess is not the same length as answer");
-        }
-
-        boolean hasIncorrect = false;
-        Square[] squares = new Square[guess.length()];
-
-        for (int i = 0; i < answer.length(); i++) {
-            char answerChar = answer.charAt(i);
-            char guessChar = guess.charAt(i);
-            LetterState state;
-            if (answerChar == guessChar) {
-                state = LetterState.CORRECT;
-            } else if (answer.contains(guessChar + "")) {
-                state = LetterState.WRONG_PLACE;
-                hasIncorrect = true;
-            } else {
-                state = LetterState.INCORRECT;
-                hasIncorrect = true;
+            String answer = WordOfTheDay.getWord();
+            if (guess.length() != answer.length()) {
+                throw new IllegalArgumentException("Guess is not the same length as answer");
             }
-            Square square = new Square(guessChar, state);
-            squares[i] = square;
+            boolean hasIncorrect = false;
+            Square[] squares = new Square[guess.length()];
+            List<Integer> correctIndexes = new ArrayList<>();
+            List<Character> remainingChars = new ArrayList<>();
+            for (int i = 0; i < answer.length(); i++) {
+                char answerChar = answer.charAt(i);
+                char guessChar = guess.charAt(i);
+                if (answerChar == guessChar) {
+                    squares[i] = new Square(answerChar, LetterState.CORRECT);
+                    correctIndexes.add(i);
+                } else {
+                    remainingChars.add(answerChar);
+                }
+            }
+            for (int i = 0; i < answer.length(); i++) {
+                if (correctIndexes.contains(i)) {
+                    continue; // This square is green already
+                }
+                char guessChar = guess.charAt(i);
+                if (remainingChars.contains(guessChar)) {
+                    squares[i] = new Square(guessChar, LetterState.WRONG_PLACE);
+                    hasIncorrect = true;
+                }
+            }
+            for (int i = 0; i < squares.length; i++) {
+                if (squares[i] == null) {
+                    char guessChar = guess.charAt(i);
+                    squares[i] = new Square(guessChar, LetterState.INCORRECT);
+                    hasIncorrect = true;
+                }
+            }
+            return new GuessCheckResponse(!hasIncorrect, squares, false);
         }
-
-        return new GuessCheckResponse(!hasIncorrect, squares, false);
-    }
 
     /**
      * This method processes the user's guess.
      * @param guess user input guess
-     * @return
+     * @return GuessCheckResponse
      */
     public GuessCheckResponse processGuess(String guess) {
         if (!this.guess.isRealWord(guess) || this.guess.isDuplicateWord(guess)) {
@@ -84,13 +96,6 @@ public class Wordle {
         return guess;
     }
 
-    /**
-     * Get word of the day from WordOfTheDay class
-     * @return String for wordOfTheDay
-     */
-    public WordOfTheDay getWordOfTheDay() {
-        return wordOfTheDay;
-    }
 
 }
 

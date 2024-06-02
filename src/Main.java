@@ -1,6 +1,6 @@
 /**
  * This is the end of semester 2 project - 6-Letter Wordle.
- * Author:
+ * Author: Alexis C
  * Date: 05-31-2024
  */
 
@@ -109,8 +109,6 @@ public class Main {
                 System.out.println("Error occurred while storing the date.");
                 e.printStackTrace();
             }
-        } else {
-            System.out.println("Invalid input. Date not stored in file.");
         }
     }
 

@@ -22,7 +22,7 @@ public class Display {
                 return;
 
             } else if (end == -1) {
-                System.out.println("Sorry, you have run out of guesses.\nThe answer word was: " + wordle.getWordOfTheDay());
+                System.out.println("Sorry, you have run out of guesses.\nThe answer word was: " + WordOfTheDay.getWord());
                 return;
             } else if (end == -2) {
                 System.out.println(Main.ANSI_RED + Main.ANSI_BOLD + "Your word is either invalid or already guessed. Please try again. " + Main.ANSI_RESET);

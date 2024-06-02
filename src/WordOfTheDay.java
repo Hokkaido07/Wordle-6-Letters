@@ -5,7 +5,7 @@ import java.util.Random;
  * This class is used to generate the Word of the Day by randomly choosing a word from the Word bank.
  */
 public class WordOfTheDay {
-    private String word;
+    private static String word;
 
     public WordOfTheDay() {
         FileParse fileParse = new FileParse();
@@ -17,7 +17,7 @@ public class WordOfTheDay {
         }
     }
 
-    public String getWord() {
+    public static String getWord() {
         return word;
     }
 }
