@@ -24,50 +24,52 @@ public class Wordle {
 
     /**
      * This method checks whether the guess letters are equivalent to the answer letters.
+     *
      * @param guess user input guess
      * @return GuessCheckResponse for whether the guess is correct, the square on the grid for the character, and whether the user needs to guess again
      */
     public GuessCheckResponse isGuessCorrect(String guess) {
-            String answer = WordOfTheDay.getWord();
-            if (guess.length() != answer.length()) {
-                throw new IllegalArgumentException("Guess is not the same length as answer");
-            }
-            boolean hasIncorrect = false;
-            Square[] squares = new Square[guess.length()];
-            List<Integer> correctIndexes = new ArrayList<>();
-            List<Character> remainingChars = new ArrayList<>();
-            for (int i = 0; i < answer.length(); i++) {
-                char answerChar = answer.charAt(i);
-                char guessChar = guess.charAt(i);
-                if (answerChar == guessChar) {
-                    squares[i] = new Square(answerChar, LetterState.CORRECT);
-                    correctIndexes.add(i);
-                } else {
-                    remainingChars.add(answerChar);
-                }
-            }
-            for (int i = 0; i < answer.length(); i++) {
-                if (correctIndexes.contains(i)) {
-                    continue; // This square is green already
-                }
-                char guessChar = guess.charAt(i);
-                if (remainingChars.contains(guessChar)) {
-                    squares[i] = new Square(guessChar, LetterState.WRONG_PLACE);
-                    hasIncorrect = true;
-                }
-            }
-            for (int i = 0; i < squares.length; i++) {
-                if (squares[i] == null) {
-                    char guessChar = guess.charAt(i);
-                    squares[i] = new Square(guessChar, LetterState.INCORRECT);
-                    hasIncorrect = true;
-                }
-            }
-            return new GuessCheckResponse(!hasIncorrect, squares, false);
+        String answer = WordOfTheDay.getWord();
+        if (guess.length() != answer.length()) {
+            throw new IllegalArgumentException("Guess is not the same length as answer");
         }
+        boolean hasIncorrect = false;
+        Square[] squares = new Square[guess.length()];
+        List<Integer> correctIndexes = new ArrayList<>();
+        List<Character> remainingChars = new ArrayList<>();
+        for (int i = 0; i < answer.length(); i++) {
+            char answerChar = answer.charAt(i);
+            char guessChar = guess.charAt(i);
+            if (answerChar == guessChar) {
+                squares[i] = new Square(answerChar, LetterState.CORRECT);
+                correctIndexes.add(i);
+            } else {
+                remainingChars.add(answerChar);
+            }
+        }
+        for (int i = 0; i < answer.length(); i++) {
+            if (correctIndexes.contains(i)) {
+                continue;
+            }
+            char guessChar = guess.charAt(i);
+            if (remainingChars.contains(guessChar)) {
+                squares[i] = new Square(guessChar, LetterState.WRONG_PLACE);
+                hasIncorrect = true;
+            }
+        }
+        for (int i = 0; i < squares.length; i++) {
+            if (squares[i] == null) {
+                char guessChar = guess.charAt(i);
+                squares[i] = new Square(guessChar, LetterState.INCORRECT);
+                hasIncorrect = true;
+            }
+        }
+        return new GuessCheckResponse(!hasIncorrect, squares, false);
+    }
 
     /**
      * This method processes the user's guess.
+     *
      * @param guess user input guess
      * @return GuessCheckResponse
      */
@@ -82,6 +84,7 @@ public class Wordle {
 
     /**
      * This method gets the time since the game has started.
+     *
      * @return amount of time since game started
      */
     public Duration getTimeSinceStarted() {
@@ -90,6 +93,7 @@ public class Wordle {
 
     /**
      * Get guess from Guess class
+     *
      * @return user input guess
      */
     public Guess getGuess() {
